@@ -1,0 +1,53 @@
+﻿@using ASP_Final.ViewModels
+@model AddViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div style="background-color:whitesmoke;" class="container-fluid">
+    <h1 style="color:red;">Welcome to Our Car Ads Site.Please do not mind front of the page:)</h1>
+
+    <div style="margin-top:60px;" class="row">
+        <div class="col-md-8">
+            <h2>Premium Advertisments</h2>
+            @foreach (var item in Model.PremiumAdvertisments)
+            {
+                <div style="margin-top:30px;" class="col-md-3">
+                    <img style="width:100%;height:100%;object-fit:cover;" src="~/Images/Ads/@item.Image" />
+                    <p>@item.Model.Marka.Markaname , @item.Model.ModelName <i style="position:absolute;right:20px;top:10px;color:red;font-size:2.3em;" class="fab fa-product-hunt"></i></p>
+                    <p style="color:white;background-color:black;">@item.Price $</p>
+                    <p><span>Year:@item.ProductionYear.Value.Year</span>  <span>@item.Milage km</span></p>
+                    <a style="color:red;" href="@Url.Action("Details", "Addvertisments", new { id = item.ID })">Details>>></a>
+
+                </div>
+
+            }
+        </div>
+
+        <div class="col-md-8">
+            @foreach (var item in Model.Advertisments)
+            {
+            <div style="margin-top:30px;" class="col-md-3">
+                <img style="width:100%;height:100%;object-fit:cover;" src="~/Images/Ads/@item.Image" />
+                <p>@item.Model.Marka.Markaname , @item.Model.ModelName</p>
+                <p style="color:white;background-color:black;">@item.Price $</p>
+                <p><span>Year:@item.ProductionYear.Value.Year</span>  <span>@item.Milage km</span></p>
+                <a style="color:red;" href="@Url.Action("Details", "Addvertisments", new { id = item.ID })">Details>>></a>
+
+            </div>
+                
+            }
+        <div class="col-md-12">
+            @foreach (var item in Model.Markas)
+            {
+                <a>@item.Markaname @Model.Advertisments.Where(a => a.Model.MarkaID == item.ID).Count()   </a>
+            }
+        </div>
+        </div>
+        <div class="col-md-3"style="border:1px solid black">
+            @Html.Partial("_RightSideBar", Model.ResentNewsVM)
+        </div>
+        
+    </div>
+</div>

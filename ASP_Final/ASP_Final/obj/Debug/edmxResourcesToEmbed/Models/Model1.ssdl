@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ASPFinalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admins">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Advertisments">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedAt" Type="date" />
+    <Property Name="UpdatedAt" Type="date" />
+    <Property Name="CityID" Type="int" />
+    <Property Name="IsPremium" Type="bit" />
+    <Property Name="CapacityID" Type="int" />
+    <Property Name="ColorID" Type="int" />
+    <Property Name="FuelTypeID" Type="int" />
+    <Property Name="SpeedBoxeId" Type="int" Nullable="false" />
+    <Property Name="ProductionYear" Type="date" />
+    <Property Name="Milage" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="GeneralInfo" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar" MaxLength="255" />
+    <Property Name="Price" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="CarModel" Type="int" />
+    <Property Name="UserID" Type="int" />
+  </EntityType>
+  <EntityType Name="Cities">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Colors">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Colorname" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="EngineCapacities">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Capacity" Type="decimal" Precision="6" Scale="2" />
+  </EntityType>
+  <EntityType Name="Fueltypes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fueltype" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Markas">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Markaname" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="Models">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModelName" Type="nvarchar" MaxLength="100" />
+    <Property Name="MarkaID" Type="int" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Title" Type="nvarchar" MaxLength="250" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="CreatedAt" Type="date" />
+  </EntityType>
+  <EntityType Name="SpeedBoxes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BoxType" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Firstname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK__Advertism__Capac__4E88ABD4">
+    <End Role="EngineCapacities" Type="Self.EngineCapacities" Multiplicity="0..1" />
+    <End Role="Advertisments" Type="Self.Advertisments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EngineCapacities">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments">
+        <PropertyRef Name="CapacityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Advertism__CarMo__5FB337D6">
+    <End Role="Models" Type="Self.Models" Multiplicity="0..1" />
+    <End Role="Advertisments" Type="Self.Advertisments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Models">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments">
+        <PropertyRef Name="CarModel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Advertism__CityI__4BAC3F29">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+    <End Role="Advertisments" Type="Self.Advertisments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Advertism__Color__4F7CD00D">
+    <End Role="Colors" Type="Self.Colors" Multiplicity="0..1" />
+    <End Role="Advertisments" Type="Self.Advertisments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Colors">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments">
+        <PropertyRef Name="ColorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Advertism__FuelT__5070F446">
+    <End Role="Fueltypes" Type="Self.Fueltypes" Multiplicity="0..1" />
+    <End Role="Advertisments" Type="Self.Advertisments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fueltypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments">
+        <PropertyRef Name="FuelTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Advertism__Speed__5165187F">
+    <End Role="SpeedBoxes" Type="Self.SpeedBoxes" Multiplicity="1" />
+    <End Role="Advertisments" Type="Self.Advertisments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpeedBoxes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments">
+        <PropertyRef Name="SpeedBoxeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Advertism__UserI__60A75C0F">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Advertisments" Type="Self.Advertisments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Models__MarkaID__5BE2A6F2">
+    <End Role="Markas" Type="Self.Markas" Multiplicity="0..1" />
+    <End Role="Models" Type="Self.Models" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Markas">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Models">
+        <PropertyRef Name="MarkaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Advertisments_Advertisments">
+    <End Role="Advertisments" Type="Self.Advertisments" Multiplicity="1" />
+    <End Role="Advertisments1" Type="Self.Advertisments" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Advertisments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Advertisments_Advertisments1">
+    <End Role="Advertisments" Type="Self.Advertisments" Multiplicity="1" />
+    <End Role="Advertisments1" Type="Self.Advertisments" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Advertisments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Advertisments_Advertisments2">
+    <End Role="Advertisments" Type="Self.Advertisments" Multiplicity="1" />
+    <End Role="Advertisments1" Type="Self.Advertisments" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Advertisments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ASPFinalModelStoreContainer">
+    <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Advertisments" EntityType="Self.Advertisments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EngineCapacities" EntityType="Self.EngineCapacities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fueltypes" EntityType="Self.Fueltypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Markas" EntityType="Self.Markas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Models" EntityType="Self.Models" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SpeedBoxes" EntityType="Self.SpeedBoxes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Advertism__Capac__4E88ABD4" Association="Self.FK__Advertism__Capac__4E88ABD4">
+      <End Role="EngineCapacities" EntitySet="EngineCapacities" />
+      <End Role="Advertisments" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Advertism__CarMo__5FB337D6" Association="Self.FK__Advertism__CarMo__5FB337D6">
+      <End Role="Models" EntitySet="Models" />
+      <End Role="Advertisments" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Advertism__CityI__4BAC3F29" Association="Self.FK__Advertism__CityI__4BAC3F29">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Advertisments" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Advertism__Color__4F7CD00D" Association="Self.FK__Advertism__Color__4F7CD00D">
+      <End Role="Colors" EntitySet="Colors" />
+      <End Role="Advertisments" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Advertism__FuelT__5070F446" Association="Self.FK__Advertism__FuelT__5070F446">
+      <End Role="Fueltypes" EntitySet="Fueltypes" />
+      <End Role="Advertisments" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Advertism__Speed__5165187F" Association="Self.FK__Advertism__Speed__5165187F">
+      <End Role="SpeedBoxes" EntitySet="SpeedBoxes" />
+      <End Role="Advertisments" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Advertism__UserI__60A75C0F" Association="Self.FK__Advertism__UserI__60A75C0F">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Advertisments" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Models__MarkaID__5BE2A6F2" Association="Self.FK__Models__MarkaID__5BE2A6F2">
+      <End Role="Markas" EntitySet="Markas" />
+      <End Role="Models" EntitySet="Models" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Advertisments_Advertisments" Association="Self.FK_Advertisments_Advertisments">
+      <End Role="Advertisments" EntitySet="Advertisments" />
+      <End Role="Advertisments1" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Advertisments_Advertisments1" Association="Self.FK_Advertisments_Advertisments1">
+      <End Role="Advertisments" EntitySet="Advertisments" />
+      <End Role="Advertisments1" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Advertisments_Advertisments2" Association="Self.FK_Advertisments_Advertisments2">
+      <End Role="Advertisments" EntitySet="Advertisments" />
+      <End Role="Advertisments1" EntitySet="Advertisments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

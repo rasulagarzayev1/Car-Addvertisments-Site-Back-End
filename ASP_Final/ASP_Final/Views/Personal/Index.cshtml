@@ -1,0 +1,27 @@
+﻿@using ASP_Final.ViewModels
+@model PersonalVM
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1><i class="fas fa-user-circle"></i>  <span>@Model.user.Firstname @Model.user.Lastname</span></h1>
+        </div>
+        @foreach (var item in Model.Advertisments)
+        {
+            <div style="margin-top:30px;" class="col-md-3">
+                <img style="width:100%;height:100%;object-fit:cover;" src="~/Images/Ads/@item.Image" />
+                <p>@item.Model.Marka.Markaname , @item.Model.ModelName</p>
+                <p style="color:white;background-color:black;">@item.Price $</p>
+                <p><span>Year:@item.ProductionYear.Value.Year</span>  <span>@item.Milage km</span></p>
+                <a style="color:red;" href="@Url.Action("PersonalDetails", "Personal", new { id = item.ID })">Details>>></a>
+            </div>
+
+        }
+
+    </div>
+</div>
+

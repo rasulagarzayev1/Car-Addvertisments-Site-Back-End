@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ASPFinalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Advertisment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
+    <Property Name="CityID" Type="Int32" />
+    <Property Name="IsPremium" Type="Boolean" />
+    <Property Name="CapacityID" Type="Int32" />
+    <Property Name="ColorID" Type="Int32" />
+    <Property Name="FuelTypeID" Type="Int32" />
+    <Property Name="SpeedBoxeId" Type="Int32" Nullable="false" />
+    <Property Name="ProductionYear" Type="DateTime" Precision="0" />
+    <Property Name="Milage" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="GeneralInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="CarModel" Type="Int32" />
+    <Property Name="UserID" Type="Int32" />
+    <NavigationProperty Name="EngineCapacity" Relationship="Self.FK__Advertism__Capac__4E88ABD4" FromRole="Advertisments" ToRole="EngineCapacities" />
+    <NavigationProperty Name="Model" Relationship="Self.FK__Advertism__CarMo__5FB337D6" FromRole="Advertisments" ToRole="Models" />
+    <NavigationProperty Name="Color" Relationship="Self.FK__Advertism__Color__4F7CD00D" FromRole="Advertisments" ToRole="Colors" />
+    <NavigationProperty Name="Fueltype" Relationship="Self.FK__Advertism__FuelT__5070F446" FromRole="Advertisments" ToRole="Fueltypes" />
+    <NavigationProperty Name="SpeedBox" Relationship="Self.FK__Advertism__Speed__5165187F" FromRole="Advertisments" ToRole="SpeedBoxes" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Advertism__UserI__60A75C0F" FromRole="Advertisments" ToRole="Users" />
+    <NavigationProperty Name="Advertisments1" Relationship="Self.FK_Advertisments_Advertisments" FromRole="Advertisments" ToRole="Advertisments1" />
+    <NavigationProperty Name="Advertisment1" Relationship="Self.FK_Advertisments_Advertisments" FromRole="Advertisments1" ToRole="Advertisments" />
+    <NavigationProperty Name="Advertisments11" Relationship="Self.FK_Advertisments_Advertisments1" FromRole="Advertisments" ToRole="Advertisments1" />
+    <NavigationProperty Name="Advertisment2" Relationship="Self.FK_Advertisments_Advertisments1" FromRole="Advertisments1" ToRole="Advertisments" />
+    <NavigationProperty Name="Advertisments12" Relationship="Self.FK_Advertisments_Advertisments2" FromRole="Advertisments" ToRole="Advertisments1" />
+    <NavigationProperty Name="Advertisment3" Relationship="Self.FK_Advertisments_Advertisments2" FromRole="Advertisments1" ToRole="Advertisments" />
+    <NavigationProperty Name="City" Relationship="ASPFinalModel.FK__Advertism__CityI__4BAC3F29" FromRole="Advertisment" ToRole="City" />
+  </EntityType>
+  <EntityType Name="Color">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Colorname" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Advertisments" Relationship="Self.FK__Advertism__Color__4F7CD00D" FromRole="Colors" ToRole="Advertisments" />
+  </EntityType>
+  <EntityType Name="EngineCapacity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Capacity" Type="Decimal" Precision="6" Scale="2" />
+    <NavigationProperty Name="Advertisments" Relationship="Self.FK__Advertism__Capac__4E88ABD4" FromRole="EngineCapacities" ToRole="Advertisments" />
+  </EntityType>
+  <EntityType Name="Fueltype">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fueltype1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Advertisments" Relationship="Self.FK__Advertism__FuelT__5070F446" FromRole="Fueltypes" ToRole="Advertisments" />
+  </EntityType>
+  <EntityType Name="Marka">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Markaname" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Models" Relationship="Self.FK__Models__MarkaID__5BE2A6F2" FromRole="Markas" ToRole="Models" />
+  </EntityType>
+  <EntityType Name="Model">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModelName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MarkaID" Type="Int32" />
+    <NavigationProperty Name="Advertisments" Relationship="Self.FK__Advertism__CarMo__5FB337D6" FromRole="Models" ToRole="Advertisments" />
+    <NavigationProperty Name="Marka" Relationship="Self.FK__Models__MarkaID__5BE2A6F2" FromRole="Models" ToRole="Markas" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="SpeedBox">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BoxType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Advertisments" Relationship="Self.FK__Advertism__Speed__5165187F" FromRole="SpeedBoxes" ToRole="Advertisments" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Advertisments" Relationship="Self.FK__Advertism__UserI__60A75C0F" FromRole="Users" ToRole="Advertisments" />
+  </EntityType>
+  <Association Name="FK__Advertism__Capac__4E88ABD4">
+    <End Role="EngineCapacities" Type="Self.EngineCapacity" Multiplicity="0..1" />
+    <End Role="Advertisments" Type="Self.Advertisment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EngineCapacities">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments">
+        <PropertyRef Name="CapacityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Advertism__CarMo__5FB337D6">
+    <End Role="Models" Type="Self.Model" Multiplicity="0..1" />
+    <End Role="Advertisments" Type="Self.Advertisment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Models">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments">
+        <PropertyRef Name="CarModel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Advertism__Color__4F7CD00D">
+    <End Role="Colors" Type="Self.Color" Multiplicity="0..1" />
+    <End Role="Advertisments" Type="Self.Advertisment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Colors">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments">
+        <PropertyRef Name="ColorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Advertism__FuelT__5070F446">
+    <End Role="Fueltypes" Type="Self.Fueltype" Multiplicity="0..1" />
+    <End Role="Advertisments" Type="Self.Advertisment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fueltypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments">
+        <PropertyRef Name="FuelTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Advertism__Speed__5165187F">
+    <End Role="SpeedBoxes" Type="Self.SpeedBox" Multiplicity="1" />
+    <End Role="Advertisments" Type="Self.Advertisment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpeedBoxes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments">
+        <PropertyRef Name="SpeedBoxeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Advertism__UserI__60A75C0F">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Advertisments" Type="Self.Advertisment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Advertisments_Advertisments">
+    <End Role="Advertisments" Type="Self.Advertisment" Multiplicity="1" />
+    <End Role="Advertisments1" Type="Self.Advertisment" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Advertisments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Advertisments_Advertisments1">
+    <End Role="Advertisments" Type="Self.Advertisment" Multiplicity="1" />
+    <End Role="Advertisments1" Type="Self.Advertisment" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Advertisments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Advertisments_Advertisments2">
+    <End Role="Advertisments" Type="Self.Advertisment" Multiplicity="1" />
+    <End Role="Advertisments1" Type="Self.Advertisment" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Advertisments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisments1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Models__MarkaID__5BE2A6F2">
+    <End Role="Markas" Type="Self.Marka" Multiplicity="0..1" />
+    <End Role="Models" Type="Self.Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Markas">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Models">
+        <PropertyRef Name="MarkaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ASPFinalEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Advertisments" EntityType="Self.Advertisment" />
+    <EntitySet Name="Colors" EntityType="Self.Color" />
+    <EntitySet Name="EngineCapacities" EntityType="Self.EngineCapacity" />
+    <EntitySet Name="Fueltypes" EntityType="Self.Fueltype" />
+    <EntitySet Name="Markas" EntityType="Self.Marka" />
+    <EntitySet Name="Models" EntityType="Self.Model" />
+    <EntitySet Name="News" EntityType="Self.News" />
+    <EntitySet Name="SpeedBoxes" EntityType="Self.SpeedBox" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Advertism__Capac__4E88ABD4" Association="Self.FK__Advertism__Capac__4E88ABD4">
+      <End Role="EngineCapacities" EntitySet="EngineCapacities" />
+      <End Role="Advertisments" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Advertism__CarMo__5FB337D6" Association="Self.FK__Advertism__CarMo__5FB337D6">
+      <End Role="Models" EntitySet="Models" />
+      <End Role="Advertisments" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Advertism__Color__4F7CD00D" Association="Self.FK__Advertism__Color__4F7CD00D">
+      <End Role="Colors" EntitySet="Colors" />
+      <End Role="Advertisments" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Advertism__FuelT__5070F446" Association="Self.FK__Advertism__FuelT__5070F446">
+      <End Role="Fueltypes" EntitySet="Fueltypes" />
+      <End Role="Advertisments" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Advertism__Speed__5165187F" Association="Self.FK__Advertism__Speed__5165187F">
+      <End Role="SpeedBoxes" EntitySet="SpeedBoxes" />
+      <End Role="Advertisments" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Advertism__UserI__60A75C0F" Association="Self.FK__Advertism__UserI__60A75C0F">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Advertisments" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Advertisments_Advertisments" Association="Self.FK_Advertisments_Advertisments">
+      <End Role="Advertisments" EntitySet="Advertisments" />
+      <End Role="Advertisments1" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Advertisments_Advertisments1" Association="Self.FK_Advertisments_Advertisments1">
+      <End Role="Advertisments" EntitySet="Advertisments" />
+      <End Role="Advertisments1" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Advertisments_Advertisments2" Association="Self.FK_Advertisments_Advertisments2">
+      <End Role="Advertisments" EntitySet="Advertisments" />
+      <End Role="Advertisments1" EntitySet="Advertisments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Models__MarkaID__5BE2A6F2" Association="Self.FK__Models__MarkaID__5BE2A6F2">
+      <End Role="Markas" EntitySet="Markas" />
+      <End Role="Models" EntitySet="Models" />
+    </AssociationSet>
+    <EntitySet Name="Cities" EntityType="ASPFinalModel.City" />
+    <AssociationSet Name="FK__Advertism__CityI__4BAC3F29" Association="ASPFinalModel.FK__Advertism__CityI__4BAC3F29">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Advertisment" EntitySet="Advertisments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Advertisments" Relationship="ASPFinalModel.FK__Advertism__CityI__4BAC3F29" FromRole="City" ToRole="Advertisment" />
+  </EntityType>
+  <Association Name="FK__Advertism__CityI__4BAC3F29">
+    <End Type="ASPFinalModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="ASPFinalModel.Advertisment" Role="Advertisment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Advertisment">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

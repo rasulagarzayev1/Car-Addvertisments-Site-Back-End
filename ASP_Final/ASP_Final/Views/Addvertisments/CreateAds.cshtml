@@ -1,0 +1,160 @@
+﻿@model ASP_Final.Models.Advertisment
+
+@{
+    ViewBag.Title = "CreateAds";
+}
+
+<h2>CreateAds</h2>
+
+@using (Html.BeginForm("CreateAds", "Addvertisments", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Advertisment</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2">City</label>
+        <div class="col-md-10">
+            @Html.DropDownList("CityID", (IEnumerable<SelectListItem>)ViewBag.Cities, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsPremium, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.IsPremium)
+                @Html.ValidationMessageFor(model => model.IsPremium, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CapacityID, "Capacity", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("CapacityID", (IEnumerable<SelectListItem>)ViewBag.EngineCapacities, htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ColorID, "Color", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("ColorID", (IEnumerable<SelectListItem>)ViewBag.Colors, htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FuelTypeID, "Fueltype", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("FuelTypeID", (IEnumerable<SelectListItem>)ViewBag.Fueltypes, htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SpeedBoxeId, "SpeedBoxe", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("SpeedBoxeId", (IEnumerable<SelectListItem>)ViewBag.SpeedBoxes, htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductionYear, "Production Year", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ProductionYear, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ProductionYear, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Milage, "Milage", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Milage, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Milage, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GeneralInfo, "General Info", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GeneralInfo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GeneralInfo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Image, "Image", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" class="form-control" name="Image" />
+            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, "Price", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Model.MarkaID, "Marka", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("MarkaID", (IEnumerable<SelectListItem>)ViewBag.Markas,"Select Marka", htmlAttributes: new { @class = "form-control" ,@id="markaDrop"})
+        </div>
+    </div>
+   
+    <div class="form-group">
+        @Html.LabelFor(model => model.Model.MarkaID, "Marka", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select id="modeldrop" class="form-control" name="CarModel">
+                <option value="0">
+                    Select Model
+                </option>
+            </select>
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</div>
+
+@section Scripts{
+    <script>
+        $("#markaDrop").change(function () {
+            if ($(this).val()) {
+                $.ajax({
+                    url: "/AJAX/LoadModelsPartial",
+                    data: { markaID: $(this).val() },
+                    type: "GET",
+                    dataType: "html",
+                    success: function (res) {
+                        $("#modeldrop").html($("#modeldrop").html + res);
+                    }
+                    
+                })
+
+                
+                
+            }
+            
+        })
+    </script>
+    
+    
+    }

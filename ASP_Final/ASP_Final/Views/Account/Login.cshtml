@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<div style="margin-top:50px;" class="container">
+    <div class="row">
+        <div class="col-12">
+            <form method="post">
+                <div class="form-group col-md-12">
+                    <label for="email">Email</label>
+                    <input id="email" type="text"  name="email" class="form-control" />
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="password">Password</label>
+                    <input id="password" type="password"  name="password" class="form-control" />
+                </div>
+
+                @if (ViewBag.LoginError != null)
+                {
+                    <div class="alert alert-danger">
+                        <p>@ViewBag.LoginError</p>
+                    </div>
+                }
+
+                <a href="/Account/Register">Don't you have an account?</a>
+
+                <input type="submit" value="Log In" style="display: block; margin-top: 50px;" class="btn btn-success btn-lg" />
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,12 @@
+﻿@using ASP_Final.ViewModels
+@model ResentNewsVM
+<div class="col-md-12">
+    <h2>Recent News</h2>
+    @foreach (var item in Model.News)
+    {
+        <a href="@Url.Action("Single", "News", new { id = item.ID })"><img style="width:100%;" src="~/Images/News/@item.Image" /></a>
+        <h3><a href="@Url.Action("Single", "News", new { id = item.ID })" >@item.Title.Substring(0,10) ...</a></h3>
+        <p><a href="@Url.Action("Single", "News", new { id = item.ID })" style="color:black;">@item.Content.Substring(0,29) ...</a></p>
+        <hr />
+    }
+</div>

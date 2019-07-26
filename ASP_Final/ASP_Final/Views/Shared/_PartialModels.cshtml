@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ASP_Final.Models.Model>
+@*<div class="form-group">*@
+    @*@Html.LabelFor(model => model.Model.MarkaID, "Marka", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">*@
+        <select id="modeldrop" class="form-control" name="CarModel">
+            @foreach (var item in Model)
+            {
+                <option value="@item.ID">@item.ModelName</option>
+            }
+        </select>
+        @*@Html.ValidationMessageFor(model => model.CarModel, "", new { @class = "text-danger" })
+    </div>
+</div>*@

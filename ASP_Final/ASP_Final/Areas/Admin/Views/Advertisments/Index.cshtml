@@ -1,0 +1,91 @@
+﻿@model IEnumerable<ASP_Final.Models.Advertisment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            Marka
+        </th>
+        <th>
+            Model
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPremium)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Milage)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+
+        <th>
+            City
+        </th>
+        <th>
+            Color
+        </th>
+
+
+
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            <img src="~/Images/Ads/@item.Image" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model.Marka.Markaname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model.ModelName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsPremium)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Milage)
+        </td>
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.City.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Color.Colorname)
+        </td>
+
+
+
+
+
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+        </td>
+    </tr>
+}
+
+</table>

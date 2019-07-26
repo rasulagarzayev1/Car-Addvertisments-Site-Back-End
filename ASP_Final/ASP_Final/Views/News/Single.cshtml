@@ -1,0 +1,16 @@
+﻿@using ASP_Final.Models
+@using ASP_Final.ViewModels
+@model News
+@{
+    ViewBag.Title = "Single";
+}
+
+<div class="container">
+    <div class="row">
+        <div style="margin-top:30px;"  class="col-md-8">
+            <img style="width:100%;" src="~/Images/News/@Model.Image" />
+            <h2>@Model.Title</h2>
+            <p>@Model.Content</p>
+        </div>
+    </div>
+</div>
